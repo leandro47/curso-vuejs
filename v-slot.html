@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-slot</title>
+</head>
+
+<body>
+    <div id="element">
+        <text-component>
+            <template v-slot:header>
+                <h2>cabeçalho</h2>
+            </template>
+
+            <template v-slot:paragrafo>
+                leandro
+            </template>
+        </text-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        Vue.component('text-component', {
+            template: `
+            <div>
+                <header>
+                    <slot name="header"></slot>    
+                </header>
+                <p>
+                    <slot name="paragrafo"></slot>
+                </p>
+            </div>
+            `
+        })
+
+        let app = new Vue({
+            el: '#element',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-custom</title>
+</head>
+
+<body>
+    <div id="element">
+        <h4 v-upper>{{name}}</h4>
+
+        <h2 v-capitalize>{{frase}}</h2>
+
+        <!-- <h3 v-custom:parametro.mod1.mod2="'info'">{{name}}</h3> -->
+        <h2 v-custom:[arg]="distance">{{name}}</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+    <script>
+
+        Vue.directive('upper', {
+            inserted(el) {
+                el.innerText = el.innerText.toUpperCase()
+            }
+        })
+
+        function setDirection(element, binding){
+            element.style.margin = 0;
+           
+            let direction = binding.arg.toLowerCase();
+            let value = binding.value;
+            
+            switch(direction){
+                case 'left':
+                case 'right':
+                case 'bottom':
+                case 'top':
+                    let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+                    eval(`element.style.margin${newDirection} = value + 'px'`);
+                    
+                break;
+
+                default:
+                    console.error('informe uma opção correta');
+            }
+
+        }
+
+        let app = new Vue({
+            el: '#element',
+            data: {
+                name: 'teste',
+                frase : 'hello world super leandro',
+                arg: 'left',
+                distance: 150
+            },
+            directives: {
+                capitalize: {
+                    bind(element) {
+                        // console.log('Bind');
+                    },
+                    inserted(element) {
+
+                        console.log('inserted')
+                        let words = element.innerText.split(' ');
+
+                        words.forEach((text, index) => {
+                            words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+                        });
+
+                        element.innerText = words.join(' ');
+                    },
+                    update(ele) {
+                        // console.log('update')
+                    },
+                    unbind(ele) {
+                        // console.log('unbind')
+                    },
+                    componentUpdated(ele) {
+                        // console.log('componentUpdated')
+                    }
+                },
+                custom:{
+                    bind(element, binding, vnode){
+                        setDirection(element, binding);
+                    },
+                    inserted(element, bind, vnode){
+            
+                    },
+                    update(element, bind, vnode, oldvnode){
+                        setDirection(element, bind);
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
