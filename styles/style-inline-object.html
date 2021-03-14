@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style inline - object</title>
+</head>
+
+<body>
+    <div id="element">
+        <input type="text" v-model="fontSizeProp">
+        <h2 v-bind:style="{fontSize: fontSizeProp + 'px'}">Evan You</h2>
+        <hr>
+        <h2>Digite os valores das cores abaixo</h2>
+        <input type="number" v-model="colorRed">
+        <input type="number" v-model="colorGreen">
+        <input type="number" v-model="colorBlue">
+        <div :style="styleRgb">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium maiores fugit quo saepe ipsum est fugiat porro enim quod, tenetur repudiandae laboriosam similique? Deleniti error deserunt facilis odit. Facere, temporibus.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        let app = new Vue({
+            el: '#element',
+            data: {
+                fontSizeProp: 20,
+                colorRed : 255,
+                colorGreen : 105,
+                colorBlue: 80
+            },
+            computed: {
+                styleRgb(){
+                    return {color:`rgb(${this.colorRed}, ${this.colorGreen}, ${this.colorBlue})`};
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

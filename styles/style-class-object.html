@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style class - object</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .logged {
+            color :red;
+            text-decoration : underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="element">
+     <h1 v-bind:class="{logged: isLogged}">Seja bem vindo ao sistema</h1>
+     <h3 v-bind:class="classMessage">{{message}}</h3>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        let app = new Vue({
+            el: '#element',
+            data: {
+                isLogged: false,
+                error: false
+            },
+            computed: {
+                message: function(){
+                    if (!this.error) {
+                        return `Está tudo bem`;
+                    }
+                        return `Há algo errado`;
+                },
+                classMessage: function(){
+                    return (this.error) ? 'alert-danger' : 'alert-success';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
