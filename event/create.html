@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create</title>
+</head>
+
+<body>
+    <div id="element">
+        <button v-on:click="alert('sdhsujhd')">aqui</button>
+
+        <hr>
+
+        <button v-on:dblclick="add">doubleclick</button>
+
+        <h4>voce clicou {{counter}} vezes</h4>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        let app = new Vue({
+            el: '#element',
+            data: {
+                counter: 0
+            },
+            methods : {
+                add(){
+                    this.counter++;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

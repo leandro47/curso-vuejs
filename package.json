@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/leandro47/curso-vuejs#readme",
   "dependencies": {
-    "bootstrap": "^4.0.0"
+    "animate.css": "^3.5.2",
+    "bootstrap": "^4.6.0",
+    "vue2-animate": "^2.1.4"
   }
 }
